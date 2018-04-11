@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Result</p>
+<p id="demo"></p>
+
+
+<script>
+function solution(A) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    
+    L = A.length
+    RL = L+L-1
+    R =''
+    for(var i=0;i<L;i++)
+    {
+      for(var j=0;j<L;j++){
+        if(i!=j){
+          s=''
+          sep = (A[i][j] == 1) ? ',' : '|'
+          if(R.search(i) == -1 && R.search(j) == -1)
+            s = i+sep+j
+            else
+            if(R.search(i) != -1 && i < j && sep == ',')
+              R = R.replace(i,i+sep+j)
+            else if(R.search(j) == -1 && sep == '|')
+              s = '|'+j
+        
+          R+=s
+        }
+      }
+    }
+    R = R.substring(0,RL)
+    a = document.getElementById("demo").innerHTML
+    document.getElementById("demo").innerHTML=a+"<br>"+R
+   
+   }	
+   A1 = [[1, 0, 1, 0],[0, 1, 0, 0],[1, 0, 1, 1],[0, 0, 1, 1]];
+   A2 = [[1, 1, 0],[1, 1, 0],[0, 0, 1]];
+   solution(A1)
+   solution(A2)
+
+</script>
+
+
+</body>
+</html>
