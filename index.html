@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-<p>Result</p>
+
+<p>Click the button to check get the value of the first element in the array that has a value of 18 or more.</p>
+
+<button onclick="myFunction()">Try it</button>
+
 <p id="demo"></p>
 
+<p><strong>Note:</strong> The find() method is not supported in IE 11 (and earlier versions).</p>
 
 <script>
 function solution(A) {
@@ -20,23 +25,25 @@ function solution(A) {
           sep = (A[i][j] == 1) ? ',' : '|'
           if(R.search(i) == -1 && R.search(j) == -1)
             s = i+sep+j
-            else
-            if(R.search(i) != -1 && i < j && sep == ',')
+            else 
+            if(sep == ',' && R.search(i) != -1 && i < j || R.search(i+sep+j) == -1 && R.search(j+sep+i) == -1)
               R = R.replace(i,i+sep+j)
             else if(R.search(j) == -1 && sep == '|')
               s = '|'+j
-        
-          R+=s
+
+            console.log(R)
+            R = R.substring(0,RL)
+            R+=s
         }
       }
     }
-    R = R.substring(0,RL)
+    
     a = document.getElementById("demo").innerHTML
     document.getElementById("demo").innerHTML=a+"<br>"+R
    
    }	
-   A1 = [[1, 0, 1, 0],[0, 1, 0, 0],[1, 0, 1, 1],[0, 0, 1, 1]];
-   A2 = [[1, 1, 0],[1, 1, 0],[0, 0, 1]];
+   A1 = [[1, 0, 1, 0, 0],[0, 1, 0, 0, 0],[1, 0, 1, 1, 0],[0, 0, 1, 1, 1],[0,0,0,1,1]];
+   A2 = [[1, 0, 0],[0, 1, 1],[0, 1, 1]];
    solution(A1)
    solution(A2)
 
